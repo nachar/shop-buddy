@@ -14,6 +14,8 @@ export const  GET_IMAGE = async (query, page) => {
   const response = await fetch(URL + generateQuery(query, page));
   const json = await response.json();
   const [results] = json?.results;
+  if (!results) return undefined;
+
   const { urls: { thumb: image } } = results;
 
   return image;

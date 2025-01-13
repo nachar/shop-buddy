@@ -1,23 +1,40 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { GET_IMAGE } from "./API/images.js";
 
 function App() {
-  const [count, setCount] = useState(1);
-
+  const [query, setQuery] = useState('');
+  const [attempts, setAttempts] = useState(1);
+  const [elementImage, setElementImage] = useState();
 
   const searchImage = async ()  => {
-    const image = await GET_IMAGE('beer', count);
-    setCount(count + 1);
-    console.log('image: ', image);
+    const image = await GET_IMAGE(query, attempts);
+    setAttempts(attempts + 1);
+    setElementImage(image);
+  };
+
+  useEffect(() => {
+    if (!query) return;
+    const searchTimeout = setTimeout(() => {
+      searchImage();
+    }, 1500);
+    return () => clearTimeout(searchTimeout);
+  }, [query]);
+
+  const queryChange = (e) => {
+    setQuery(e.target.value);
   };
 
   return (
     <>
       <div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, assumenda.</p>
+        <form>
+          <input type="text" value={query} onChange={queryChange}/>
 
-        <button onClick={searchImage}>click</button>
+          <button onClick={searchImage}>click</button>
+
+          <img src={elementImage} alt=""/>
+        </form>
       </div>
     </>
   )
