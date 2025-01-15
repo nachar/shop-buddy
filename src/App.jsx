@@ -1,43 +1,35 @@
-import { useState, useEffect } from 'react';
 import './App.css';
-import { GET_IMAGE } from "./API/images.js";
+import Searcher from "./components/Searcher.jsx";
+import {ADD_TO_SHOPPING_LIST, GET_SHOPPING_LIST} from "./utils/storage.js";
+import {useState} from "react";
 
-function App() {
-  const [query, setQuery] = useState('');
-  const [attempts, setAttempts] = useState(1);
-  const [elementImage, setElementImage] = useState();
-
-  const searchImage = async ()  => {
-    const image = await GET_IMAGE(query, attempts);
-    setAttempts(attempts + 1);
-    setElementImage(image);
-  };
-
-  useEffect(() => {
-    if (!query) return;
-    const searchTimeout = setTimeout(() => {
-      searchImage();
-    }, 1500);
-    return () => clearTimeout(searchTimeout);
-  }, [query]);
-
-  const queryChange = (e) => {
-    setQuery(e.target.value);
+const App = ()  => {
+  const [shoppingList, setShoppingList] = useState();
+  const addElement = (element) => {
+    ADD_TO_SHOPPING_LIST(element);
+    setShoppingList(GET_SHOPPING_LIST());
   };
 
   return (
     <>
       <div>
-        <form>
-          <input type="text" value={query} onChange={queryChange}/>
+        <Searcher addElement={addElement}></Searcher>
 
-          <button onClick={searchImage}>click</button>
+        {/*TODO: Llevar a un componente*/}
+        <ul>
+          {shoppingList?.map(element => {
+            return (
+              <li>
+                <p>{element.title}</p>
+                <img src={element.image} alt=""/>
+              </li>
+            )
+          })}
+        </ul>
 
-          <img src={elementImage} alt=""/>
-        </form>
       </div>
     </>
   )
-}
+};
 
-export default App
+export default App;

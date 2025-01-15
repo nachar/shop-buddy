@@ -10,7 +10,7 @@ const generateQuery = (query, page = 1) => {
   });
 };
 
-export const  GET_IMAGE = async (query, page) => {
+export const GET_IMAGE = async (query, page) => {
   const response = await fetch(URL + generateQuery(query, page));
   const json = await response.json();
   const [results] = json?.results;
