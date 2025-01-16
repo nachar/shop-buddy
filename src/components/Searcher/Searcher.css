@@ -1,10 +1,26 @@
 .searcher {
-
+  padding: 12px;
 }
 .searcher .searcher__input {
+  display: flex;
+}
+
+.searcher .searcher__input input {
+  width: 100%;
+  border: 2px #e5e5e5 solid;
+  font-size: 1.3rem;
+  padding: 12px;
+  border-radius: 4px;
 }
 .searcher .searcher__image {
+  margin: 12px 0;
+  display: flex;
+  justify-content: center;
+}
 
+.searcher .searcher__image .searcher__image__content {
+  display: grid;
+  grid-template-columns: 100%;
 }
 
 .searcher .searcher__image img {
@@ -13,5 +29,25 @@
   object-fit: cover;
   border: 2px solid #e5e5e5;
   border-radius: 100%;
+  margin-bottom: 12px;
+}
+
+.searcher .searcher__image button {
+  border: 0;
+  padding: 8px;
+  border-radius: 4px;
+  background: #3395cd;
+  color: #fff;
+  font-weight: 600;
+}
+
+.searcher__submit button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 0;
+  border-radius: 4px;
+  background-color: #00cf92;
+  color: #fff;
 }
 

@@ -1,39 +1,37 @@
-.shopping-list-section {
-  border-top: 2px #000 solid;
-  border-bottom: 2px #000 solid;
+.previously-purchased-section {
   padding: 12px;
 }
 
-.shopping-list-section .shopping-list-section__title {
+.previously-purchased-section .previously-purchased-section__title {
   margin: 0;
 }
 
-.shopping-list {
+.previously-purchased {
   display: grid;
   grid-template-columns: 33.33% 33.33% 33.33%;
   list-style-type: none;
   padding: 0;
 }
 
-.shopping-list .shopping-list__item {
+.previously-purchased .previously-purchased__item {
   margin: 12px 0;
 }
 
-.shopping-list .shopping-list__item button {
+.previously-purchased .previously-purchased__item button {
   background: none;
   border: none;
   padding: 0;
   width: 100%;
 }
 
-.shopping-list .shopping-list__item button p {
+.previously-purchased .previously-purchased__item button p {
   text-transform: capitalize;
   margin: 0 0 8px 0;
   font-weight: 600;
   font-size: 1rem;
 }
 
-.shopping-list .shopping-list__item button img {
+.previously-purchased .previously-purchased__item button img {
   width: 100px;
   height: 100px;
   object-fit: cover;

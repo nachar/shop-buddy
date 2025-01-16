@@ -1,17 +1,17 @@
 import {useEffect, useState} from "react";
-import {GET_IMAGE} from "../../API/Images.js";
+import {GET_IMAGE, DEFAULT_IMAGE} from "../../API/Images.js";
 import './Searcher.css';
 
 const Searcher = ({ addElement }) => {
   const [query, setQuery] = useState('');
   const [attempts, setAttempts] = useState(1);
-  const [elementImage, setElementImage] = useState();
+  const [elementImage, setElementImage] = useState(DEFAULT_IMAGE);
 
   useEffect(() => {
     if (!query) return;
     const searchTimeout = setTimeout(() => {
       searchImage();
-    }, 1500);
+    }, 1000);
     return () => clearTimeout(searchTimeout);
   }, [query]);
 
@@ -22,6 +22,7 @@ const Searcher = ({ addElement }) => {
   };
 
   const queryChange = (e) => {
+    setAttempts(1);
     setQuery(e?.target?.value);
   };
 
@@ -30,6 +31,8 @@ const Searcher = ({ addElement }) => {
       image: elementImage,
       title: query
     });
+    setQuery('');
+    setElementImage(DEFAULT_IMAGE);
   };
 
   return (
@@ -39,12 +42,14 @@ const Searcher = ({ addElement }) => {
       </div>
 
       <div className="searcher__image">
-        <img src={elementImage} alt="" className="image"/>
-        <button onClick={searchImage}>Reload</button>
+        <div className="searcher__image__content">
+          <img src={elementImage} alt=""/>
+          <button onClick={searchImage}>Change image</button>
+        </div>
       </div>
 
       <div className="searcher__submit">
-        <button onClick={setElement}>Add</button>
+        <button onClick={setElement}>Add Element</button>
       </div>
     </div>
   );
