@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {GET_IMAGE} from "../API/Images.js";
+import {GET_IMAGE} from "../../API/Images.js";
 import './Searcher.css';
 
 const Searcher = ({ addElement }) => {
@@ -33,13 +33,19 @@ const Searcher = ({ addElement }) => {
   };
 
   return (
-    <div>
-      <input type="text" value={query} onChange={queryChange}/>
+    <div className="searcher">
+      <div className="searcher__input">
+        <input type="text" value={query} onChange={queryChange}/>
+      </div>
 
-      <button onClick={searchImage}>Reload</button>
-      <button onClick={setElement}>Add</button>
+      <div className="searcher__image">
+        <img src={elementImage} alt="" className="image"/>
+        <button onClick={searchImage}>Reload</button>
+      </div>
 
-      <img src={elementImage} alt="" className="image"/>
+      <div className="searcher__submit">
+        <button onClick={setElement}>Add</button>
+      </div>
     </div>
   );
 };

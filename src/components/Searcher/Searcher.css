@@ -1,0 +1,17 @@
+.searcher {
+
+}
+.searcher .searcher__input {
+}
+.searcher .searcher__image {
+
+}
+
+.searcher .searcher__image img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 2px solid #e5e5e5;
+  border-radius: 100%;
+}
+

@@ -1,10 +1,16 @@
 import './App.css';
-import Searcher from "./components/Searcher.jsx";
+import Searcher from "./components/Searcher/Searcher.jsx";
+import ShoppingList from "./components/ShoppingList/ShoppingList.jsx";
 import {ADD_TO_SHOPPING_LIST, GET_SHOPPING_LIST} from "./utils/storage.js";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 const App = ()  => {
   const [shoppingList, setShoppingList] = useState();
+
+  useEffect(() => {
+    setShoppingList(GET_SHOPPING_LIST());
+  }, []);
+
   const addElement = (element) => {
     ADD_TO_SHOPPING_LIST(element);
     setShoppingList(GET_SHOPPING_LIST());
@@ -14,19 +20,7 @@ const App = ()  => {
     <>
       <div>
         <Searcher addElement={addElement}></Searcher>
-
-        {/*TODO: Llevar a un componente*/}
-        <ul>
-          {shoppingList?.map(element => {
-            return (
-              <li>
-                <p>{element.title}</p>
-                <img src={element.image} alt=""/>
-              </li>
-            )
-          })}
-        </ul>
-
+        <ShoppingList shoppingList={shoppingList}></ShoppingList>
       </div>
     </>
   )
