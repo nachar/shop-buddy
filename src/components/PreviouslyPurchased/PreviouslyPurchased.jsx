@@ -1,6 +1,6 @@
 import './PreviouslyPurchased.css';
 
-const PreviouslyPurchased = ({ previouslyPurchased, deletePreviouslyPurchased }) => {
+const PreviouslyPurchased = ({ revivePreviouslyPurchased, previouslyPurchased, deletePreviouslyPurchased }) => {
   return (
     <div className="previously-purchased-section">
       <h2 className="previously-purchased-section__title">Previously purchased</h2>
@@ -9,9 +9,14 @@ const PreviouslyPurchased = ({ previouslyPurchased, deletePreviouslyPurchased })
         {previouslyPurchased?.map(element => {
           return (
             <li className="previously-purchased__item" key={`previously-purchased-${element.id}`}>
-              <button onClick={() => deletePreviouslyPurchased(element)}>
+              <button className="previously-purchased__item__button" onClick={() => revivePreviouslyPurchased(element)}>
                 <p>{element.title}</p>
                 <img src={element.image} alt=""/>
+              </button>
+              <button
+                className="previously-purchased__item__delete"
+                onClick={() => deletePreviouslyPurchased(element)}>
+                delete
               </button>
             </li>
           )

@@ -49,7 +49,7 @@ const Searcher = ({ addElement }) => {
       </div>
 
       <div className="searcher__submit">
-        <button onClick={setElement}>Add Element</button>
+        <button onClick={setElement} disabled={!query}>Add Element</button>
       </div>
     </div>
   );

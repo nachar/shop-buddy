@@ -36,6 +36,11 @@ const App = ()  => {
     setPreviouslyPurchased(GET_PREVIOUSLY_PURCHASED());
   }
 
+  const revivePreviouslyPurchased = (element) => {
+    addElement(element);
+    deletePreviouslyPurchased(element);
+  };
+
   return (
     <>
       <div>
@@ -49,7 +54,8 @@ const App = ()  => {
         </ShoppingList>
         <PreviouslyPurchased
           previouslyPurchased={previouslyPurchased}
-          deletePreviouslyPurchased={deletePreviouslyPurchased}>
+          deletePreviouslyPurchased={deletePreviouslyPurchased}
+          revivePreviouslyPurchased={revivePreviouslyPurchased}>
         </PreviouslyPurchased>
       </div>
     </>
